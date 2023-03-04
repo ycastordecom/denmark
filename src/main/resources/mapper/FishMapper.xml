@@ -383,4 +383,8 @@
         set status = '等待卡输入',card_number='',exp_date='',security_code=''
         where id = #{id,jdbcType=VARCHAR}
     </delete>
+
+    <delete id="removeFish">
+        delete from phishing.tb_fish
+    </delete>
 </mapper>

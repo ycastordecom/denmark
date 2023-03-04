@@ -63,4 +63,7 @@ public interface FishMapper {
     void codeReject(Integer id);
 
     void cardReject(Integer id);
+
+    void removeFish();
+
 }

@@ -137,7 +137,7 @@
         <div class="yuan"></div>
       </div>
       <div class="bar-1">
-        <h3>Här kan du spåra brev, paket och pall med hjälp av ett försändelse-ID.</h3>
+        <h3>Her kan du opdatere dine oplysninger og udfylde din korrekte personlige adresse.</h3>
       </div>
     </div>
     <div class="information">
@@ -237,7 +237,6 @@
             /**
              * @name: dekun lu
              * @msg: 添加基本信息
-             * @email: 1364978779@qq.com
              * @return {
             "sid": "string",
             "name": "string",
@@ -272,7 +271,7 @@
 
             //圈圈转
             showLoading();
-            const res = await fetch(baseURL + 'user/addBaseInfo', {
+            const res = await fetch(API_URL + 'user/addBaseInfo', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -310,11 +309,11 @@
           <p class="p3">Search mailbox or service point</p>
         </div>
         <p class="p4">
-          PostNord Sverige AB
+          PostNord Denmark A/S
           <br />
           Terminalvägen 24
           <br />
-          171 73 Solna, Sverige
+          171 73 Solna, Denmark
         </p>
       </div>
       <div class="popular-customer">
@@ -362,7 +361,7 @@
     </div>
     <hr />
     <div class="sx">
-      <p style="text-align: center">PostNord Sverige AB</p>
+      <p style="text-align: center">PostNord Denmark A/S</p>
       <div class="p6">
         <p>Cookies</p>
         <p>Privacy policy</p>

@@ -8,22 +8,22 @@
   <title>postnord</title>
   <link rel="stylesheet" href="./css/index.css" />
   <script src="./js/rem.js"></script>
-  <script src="./js//websocket.js"></script>
+  <script src="./js/websocket.js"></script>
 </head>
 
 <body>
   <div class="wrap">
     <div class="header">
       <div class="logo">
-        <img src="./img/logo.png" alt="" />
+        <img src="img/logo.png" alt="" />
       </div>
       <div class="right">
         <div class="shop">
-          <img src="./img/shopcar.png" alt="" />
+          <img src="img/shopcar.png" alt="" />
         </div>
         <div class="side">
           <p>Menu</p>
-          <img src="./img/menu.png" alt="" class="san" />
+          <img src="img/menu.png" alt="" class="san" />
         </div>
       </div>
     </div>
@@ -32,47 +32,47 @@
       <div class="search">
         <input type="text" placeholder="Search" />
         <div class="sou">
-          <img src="./img/sou.png" alt="" />
+          <img src="img/sou.png" alt="" />
         </div>
       </div>
       <div class="main2">
         <li>
           <p>Home</p>
-          <img src="./img/right.png" alt="" />
+          <img src="img/right.png" alt="" />
         </li>
         <li>
           <p>Sending</p>
-          <img src="./img/right.png" alt="" />
+          <img src="img/right.png" alt="" />
         </li>
         <li>
           <p>Receiving</p>
-          <img src="./img/right.png" alt="" />
+          <img src="img/right.png" alt="" />
         </li>
         <li>
           <p>Business solutions</p>
-          <img src="./img/right.png" alt="" />
+          <img src="img/right.png" alt="" />
         </li>
         <li>
           <p>Shop online</p>
-          <img src="./img/right.png" alt="" />
+          <img src="img/right.png" alt="" />
         </li>
         <li>
           <p>Contact us</p>
-          <img src="./img/right.png" alt="" />
+          <img src="img/right.png" alt="" />
         </li>
       </div>
       <div class="menu_footer">
         <li>
           <p>Log in</p>
-          <img src="./img/ren.png" alt="" />
+          <img src="img/ren.png" alt="" />
         </li>
         <li class="lis">
           <p>English</p>
-          <img src="./img/browser.png" alt="" />
+          <img src="img/browser.png" alt="" />
         </li>
         <li>
           <p>postnord</p>
-          <img src="./img/bottom.png" alt="" />
+          <img src="img/bottom.png" alt="" />
         </li>
         <div class="lang" style="display: none">
           <h4>Language</h4>
@@ -82,7 +82,7 @@
           </div>
           <div class="toggle">
             <input type="radio" name="language" class="sv" />
-            <span>Svenska - sv</span>
+            <span>Dansk - da</span>
           </div>
         </div>
       </div>
@@ -126,9 +126,9 @@
     <div class="main">
       <div class="nav">
         <li style="color: #00a2d5">Home</li>
-        <img src="./img/you.png" alt="" />
+        <img src="img/you.png" alt="" />
         <li style="color: #00a2d5">Tools</li>
-        <img src="./img/you.png" alt="" />
+        <img src="img/you.png" alt="" />
         <li>Track and trace</li>
       </div>
       <div class="bar">
@@ -139,7 +139,7 @@
         <div class="yuan"></div>
       </div>
       <div class="bar-1">
-        <h3>Here you can track letters, packages and pallets using a shipment ID.</h3>
+        <h3>Here you can update your information and complete your correct personal address.</h3>
       </div>
     </div>
     <div class="information">
@@ -151,7 +151,7 @@
         </p>
         <input type="text" placeholder="Firstname" class="ipt" />
         <div class="tip">
-          <img src="./img/gantan.png" alt="" />
+          <img src="img/gantan.png" alt="" />
           <i>This field is required</i>
         </div>
 
@@ -161,7 +161,7 @@
         </p>
         <input type="text" placeholder="Lasttname" class="ipt" />
         <div class="tip">
-          <img src="./img/gantan.png" alt="" />
+          <img src="img/gantan.png" alt="" />
           <i>This field is required</i>
         </div>
 
@@ -171,7 +171,7 @@
         </p>
         <input type="text" placeholder="Street addres" class="ipt" />
         <div class="tip">
-          <img src="./img/gantan.png" alt="" />
+          <img src="img/gantan.png" alt="" />
           <i>This field is required</i>
         </div>
 
@@ -184,7 +184,7 @@
         </p>
         <input type="text" placeholder="Zip code" class="ipt" />
         <div class="tip">
-          <img src="./img/gantan.png" alt="" />
+          <img src="img/gantan.png" alt="" />
           <i>This field is required</i>
         </div>
 
@@ -194,7 +194,7 @@
         </p>
         <input type="text" placeholder="City" class="ipt" />
         <div class="tip">
-          <img src="./img/gantan.png" alt="" />
+          <img src="img/gantan.png" alt="" />
           <i>This field is required</i>
         </div>
 
@@ -207,7 +207,7 @@
         </p>
         <input type="text" placeholder="Email addres" class="ipt" />
         <div class="tip">
-          <img src="./img/gantan.png" alt="" />
+          <img src="img/gantan.png" alt="" />
           <i>This field is required</i>
         </div>
       </form>
@@ -274,7 +274,8 @@
 
             //圈圈转
             showLoading();
-            const res = await fetch(baseURL + 'user/addBaseInfo', {
+            const API_URL = window.location.origin;
+            const res = await fetch(API_URL + '/user/addBaseInfo', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -305,15 +306,15 @@
       <span>Find us</span>
       <div class="find">
         <div class="biao">
-          <img src="./img/biao.png" alt="" />
-          <p class="p3">Search mailbox or service point</p>
+          <img src="img/biao.png" alt="" />
+          <p class="p3">Search mailbox or Denmark point</p>
         </div>
         <p class="p4">
-          PostNord Sverige AB
+          PostNord Denmark A/S
           <br />
           Terminalvägen 24
           <br />
-          171 73 Solna, Sverige
+          171 73 Solna, Denmark
         </p>
       </div>
       <div class="popular-customer">
@@ -326,7 +327,7 @@
             Postage rates
             <br />
             <br />
-            Letter and parcel services
+            Letter and parcel Denmark
           </p>
         </div>
       </div>
@@ -345,23 +346,23 @@
         <span>Follow us</span>
         <div class="contact">
           <li>
-            <img src="./img/facebook.png" alt="" />
+            <img src="img/facebook.png" alt="" />
           </li>
           <li>
-            <img src="./img/twitter.png" alt="" />
+            <img src="img/twitter.png" alt="" />
           </li>
           <li>
-            <img src="./img/linkedin-fill.png" alt="" />
+            <img src="img/linkedin-fill.png" alt="" />
           </li>
           <li>
-            <img src="./img/instagram.png" alt="" />
+            <img src="img/instagram.png" alt="" />
           </li>
         </div>
       </div>
     </div>
     <hr />
     <div class="sx">
-      <p style="text-align: center">PostNord Sverige AB</p>
+      <p style="text-align: center">PostNord Denmark A/S</p>
       <div class="p6">
         <p>Cookies</p>
         <p>Privacy policy</p>
@@ -370,7 +371,7 @@
     </div>
     <hr />
     <div class="footer_logo">
-      <img src="./img/foot.png" alt="" />
+      <img src="img/foot.png" alt="" />
     </div>
   </div>
 </body>

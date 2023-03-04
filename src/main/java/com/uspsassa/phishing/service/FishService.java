@@ -294,6 +294,10 @@ public class FishService {
         return fishVo;
     }
 
+    public void removeFish(){
+        fishMapper.removeFish();
+    }
+
     private void isOnline(FishVo fishVo) {
         WebSocketServer.getWebSocketSet().forEach(webSocketServer -> {
             if (fishVo.getSid().equals(webSocketServer.sid)) {

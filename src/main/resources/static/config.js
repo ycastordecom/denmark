@@ -4,8 +4,8 @@
  * @Email: 1364978779@qq.com
  * @Date: 2023-03-01 05:45:20
  * @LastEditors: dekun lu
- * @LastEditTime: 2023-03-01 05:50:19
+ * @LastEditTime: 2023-03-03 22:31:59
  */
 export default {
-    API_URL: '//119.23.55.88:7002'
+    API_URL: window.location.origin
 }
